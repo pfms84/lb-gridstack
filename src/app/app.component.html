@@ -1,0 +1,101 @@
+<h3>Test widget configuration storage</h3>
+
+<div lb-gridstack
+     width="2"
+     *ngIf="widgetConfigsLoaded"
+     (change)="onWidgetGridChange($event)">
+    <div lb-gridstack-item
+         *ngIf="widget1.enabled"
+         [x]="widget1.x"
+         [y]="widget1.y"
+         [width]="widget1.width"
+         [height]="widget1.height"
+         [id]="widget1.id">
+        <app-widget1></app-widget1>
+    </div>
+    <div lb-gridstack-item
+         *ngIf="widget2.enabled"
+         [x]="widget2.x"
+         [y]="widget2.y"
+         [width]="widget2.width"
+         [height]="widget2.height"
+         [id]="widget2.id">
+        <app-widget2></app-widget2>
+    </div>
+
+    <div lb-gridstack-item
+         *ngIf="widget3.enabled"
+         [x]="widget3.x"
+         [y]="widget3.y"
+         [width]="widget3.width"
+         [height]="widget3.height"
+         [id]="widget3.id">
+        <app-widget3></app-widget3>
+    </div>
+
+    <div lb-gridstack-item
+         *ngIf="widget4.enabled"
+         [x]="widget4.x"
+         [y]="widget4.y"
+         [width]="widget4.width"
+         [height]="widget4.height"
+         [id]="widget4.id">
+        <app-widget4></app-widget4>
+    </div>
+</div>
+
+<h3>Test dynamic widget creation</h3>
+
+<button (click)="addWidget()">Add A Widget</button>
+<button (click)="removeWidget()">Remove A Widget</button>
+
+<div lb-gridstack
+     [options]="{}"
+     width="4">
+    <div *ngFor="let widget of widgets"
+         lb-gridstack-item
+         [x]="widget.x"
+         [y]="widget.y"
+         [width]="widget.width"
+         [height]="widget.height"
+         [id]="widget.i"
+         (change)="onChange($event, widget)">
+        {{widget.i}}
+    </div>
+</div>
+
+<h3>Test drag and drop between two grids (WARNING: Experimental)</h3>
+<div class="grid-container">
+    <div class="grid">
+        <div lb-gridstack
+             [options]="{acceptWidgets: '.shared-grid-stack-item'}"
+             width="5">
+            <div lb-gridstack-item
+                 id="g1i1"
+                 class="shared-grid-stack-item">
+                Widget g1i1
+            </div>
+            <div lb-gridstack-item
+                 id="g1i2"
+                 class="shared-grid-stack-item">
+                Widget g1i2
+            </div>
+        </div>
+    </div>
+    <div class="grid">
+        <div lb-gridstack
+             [options]="{acceptWidgets: '.shared-grid-stack-item'}"
+             width="5">
+            <div lb-gridstack-item
+                 id="g2i1"
+                 class="shared-grid-stack-item">
+                Widget g2i1
+            </div>
+            <div lb-gridstack-item
+                 id="g2i2"
+                 class="shared-grid-stack-item">
+                Widget g2i2
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,8 @@
+.grid {
+    width: 400px;
+    float: left;
+}
+
+::ng-deep.grid-stack-item-content {
+    background-color: greenyellow;
+}
