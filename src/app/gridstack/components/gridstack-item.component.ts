@@ -37,8 +37,6 @@ export class GridstackItemComponent implements AfterViewInit, GridItem {
     @Input('no-move') noMove: boolean | string;
     @Input('auto-position') autoPosition: boolean | string;
     @Input() locked: boolean | string;
-    @Input('resize-handles') resizeHandles: string;
-
     public generatedId: string = (_sequence++).toString();
 
     constructor(public elem: ElementRef,
@@ -56,7 +54,6 @@ export class GridstackItemComponent implements AfterViewInit, GridItem {
         this._setAttributeIfNotUndefined('data-gs-max-height', this.maxHeight);
         this._setAttributeIfNotUndefined('data-gs-min-width', this.minWidth);
         this._setAttributeIfNotUndefined('data-gs-min-height', this.minHeight);
-        this._setAttributeIfNotUndefined('data-gs-resize-handles', this.resizeHandles);
         
         this._setAttributeIfTrue('data-gs-no-resize', this.noResize);
         this._setAttributeIfTrue('data-gs-no-move', this.noMove);

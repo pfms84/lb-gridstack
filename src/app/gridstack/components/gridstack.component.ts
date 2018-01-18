@@ -51,7 +51,6 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, Gri
     private _gridstack: GridStack;
 
     private _ngUnsubscribe = new Subject();
-    // private _widgets: GridstackItemComponent[] = [];
 
     constructor(private _zone: NgZone,
         private _el: ElementRef,
