@@ -16,7 +16,6 @@ export declare class GridstackItemComponent implements AfterViewInit, GridItem {
     noMove: boolean | string;
     autoPosition: boolean | string;
     locked: boolean | string;
-    resizeHandles: string;
     generatedId: string;
     constructor(elem: ElementRef, _renderer: Renderer2);
     ngAfterViewInit(): void;
