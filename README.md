@@ -1,27 +1,39 @@
 # lb-gridstack
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.1.
+Angular 5 wrapper for [Gridstack.js](http://gridstackjs.com/).
 
-## Development server
+***THIS IS A WORK IN PROGRESS! USE IT AT YOUR OWN RISK!***
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Getting started
 
-## Code scaffolding
+In order to try lb-gridstack while it is under development, you can install it directly from the tarballs.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+For example:
+```bash
+npm install https://github.com/pfms84/lb-gridstack/raw/develop/tarball/lb-gridstack-0.0.1.tgz --save
+```
 
-## Build
+Since this library is a wrapper for a jquery plugin, you need to define some global plugins and styles.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+### Using Angular-cli:
+- Add the following to the .angular-cli.json file
+```bash
+{
+  ...,
+  "apps": [{
+    ...
+    "styles": [
+        "../node_modules/gridstack/dist/gridstack.css",
+        ...
+    ],
+    "scripts": [
+        "../node_modules/lodash/lodash.min.js",
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/jquery-ui-dist/jquery-ui.js",
+        "../node_modules/gridstack/dist/gridstack.js",
+        "../node_modules/gridstack/dist/gridstack.jQueryUI.js",
+        ...
+    ],
+  }]
+}
+```
