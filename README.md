@@ -13,6 +13,29 @@ For example:
 npm install https://github.com/pfms84/lb-gridstack/raw/develop/tarball/lb-gridstack-0.0.1.tgz --save
 ```
 
+Then import the library on your root module (AppModule, for instance):
+```bash
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+
+import { AppComponent } from './app.component';
+import { GridstackModule } from '@lb/gridstack';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    GridstackModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+
 Since this library is a wrapper for a jquery plugin, you need to define some global plugins and styles.
 
 ### Using Angular-cli:
