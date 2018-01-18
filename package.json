@@ -1,6 +1,11 @@
 {
   "name": "@lb/gridstack",
   "version": "0.0.1",
+  "description": "Angular 5 wrapper for gridstack.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pfms84/lb-gridstack"
+  },
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,7 +14,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json"
+    "packagr": "ng-packagr -p ng-package.json && cd tarball && npm pack ../lib && cd.."
   },
   "private": false,
   "dependencies": {
