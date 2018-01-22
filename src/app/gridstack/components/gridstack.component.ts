@@ -171,6 +171,6 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, Gri
     }
 
     private _isValueTrue(val: boolean | string) {
-        return (typeof (val) === 'boolean' || (val == 'true'));
+        return (val === true || val === 'true');
     }
 }
