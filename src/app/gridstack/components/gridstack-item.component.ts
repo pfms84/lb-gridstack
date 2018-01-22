@@ -68,7 +68,7 @@ export class GridstackItemComponent implements AfterViewInit, GridItem {
     }
 
     private _setAttributeIfTrue(attrName: string, val: boolean | string): void {
-        if (typeof(val) === 'boolean' || (val == 'true')) {
+        if (val === true || val === 'true') {
             this._renderer.setAttribute(this.elem.nativeElement, attrName, 'true');
         }
     }
