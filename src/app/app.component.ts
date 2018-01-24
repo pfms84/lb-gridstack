@@ -43,6 +43,7 @@ export class AppComponent {
 
     widgetConfigsLoaded = false;
     widgetConfigs: WidgetConfig[] = _widgetDefaultConfigs;
+    height = 240;
 
     get widget1() {
         return this.widgetConfigs.find(wc => wc.id == 'widget1');
@@ -51,11 +52,11 @@ export class AppComponent {
     get widget2() {
         return this.widgetConfigs.find(wc => wc.id == 'widget2');
     }
-    
+
     get widget3() {
         return this.widgetConfigs.find(wc => wc.id == 'widget3');
     }
-    
+
     get widget4() {
         return this.widgetConfigs.find(wc => wc.id == 'widget4');
     }
@@ -69,27 +70,33 @@ export class AppComponent {
     }[] = [];
 
     constructor(private _widgetsService: WidgetsService) {
-
     }
 
     ngOnInit() {
         this._widgetsService.loadConfigurations();
- 
+
         this._widgetsService.widgetConfigurations$
-        .subscribe(configs => {
-            configs.forEach(c => {
-                const existingConfigIndex = this.widgetConfigs.findIndex(wc => wc.id == c.id);
-                this.widgetConfigs.splice(existingConfigIndex, 1, c);
+            .subscribe(configs => {
+                configs.forEach(c => {
+                    const existingConfigIndex = this.widgetConfigs.findIndex(wc => wc.id == c.id);
+                    this.widgetConfigs.splice(existingConfigIndex, 1, c);
+                });
+
+                this.widgetConfigsLoaded = true;
             });
 
-            this.widgetConfigsLoaded = true;         
-        });
+        let incrementHeight = true;
+
+        setInterval(() => {
+            this.height = incrementHeight ? this.height + 40 : this.height - 40;
+            incrementHeight = !incrementHeight;
+        }, 5000);
     }
 
     onWidgetGridChange($event: Item[]) {
         const newConfigs = this.widgetConfigs.map(wc => {
             const item = $event.find(i => i.id == wc.id);
-            if(!item) {
+            if (!item) {
                 return wc;
             }
 

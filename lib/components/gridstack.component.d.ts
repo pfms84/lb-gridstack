@@ -1,10 +1,10 @@
 import { GridstackOptions } from './models/gridstack-options';
-import { AfterViewInit, ElementRef, EventEmitter, NgZone, QueryList, Renderer2, OnInit, OnDestroy } from '@angular/core';
+import { AfterViewInit, ElementRef, EventEmitter, NgZone, QueryList, Renderer2, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { GridstackItemComponent } from './gridstack-item.component';
 import { Item } from './models/item';
 import { GridstackService } from '../services/gridstack.service';
 import { Grid } from './models/grid';
-export declare class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, Grid {
+export declare class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges, Grid {
     private _zone;
     private _el;
     private _renderer;
@@ -22,8 +22,10 @@ export declare class GridstackComponent implements OnInit, OnDestroy, AfterViewI
     private _ngUnsubscribe;
     constructor(_zone: NgZone, _el: ElementRef, _renderer: Renderer2, _gridstackService: GridstackService);
     ngOnInit(): void;
+    ngOnChanges(changes: SimpleChanges): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
+    private _updateGridstackHeight(height);
     private _handleItemChanges(items);
     private _addItem(item);
     private _removeItem(item);

@@ -17,6 +17,8 @@ import {
     ViewContainerRef,
     OnInit,
     OnDestroy,
+    OnChanges,
+    SimpleChanges,
 } from '@angular/core';
 
 declare var _: any;
@@ -35,7 +37,7 @@ import { Subject } from 'rxjs/Subject';
     styleUrls: ['./gridstack.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, Grid {
+export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges, Grid {
     @ContentChildren(GridstackItemComponent) gridstackItems: QueryList<GridstackItemComponent>;
     @Input() options: GridstackOptions;
     @Input() animate: boolean | string;
@@ -89,10 +91,10 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, Gri
             $(this._el.nativeElement).on('added', (evt: any, items: Item[]) => {
                 const itemsOfCurrentGrid = this._gridstackService.getGridItems(this.generatedId);
                 const existingItemIds: string[] = (<any>this._gridstack).grid.nodes.map(i => $(i.el)
-                .attr('class')
-                .split(/\s+/)
-                .find(s => s.startsWith('lb-generated-id-'))
-                .replace('lb-generated-id-', ''));
+                    .attr('class')
+                    .split(/\s+/)
+                    .find(s => s.startsWith('lb-generated-id-'))
+                    .replace('lb-generated-id-', ''));
 
                 const itemsToAdd = existingItemIds.filter(i => !itemsOfCurrentGrid.some(ei => ei.generatedId == i));
                 itemsToAdd.forEach(i => this._gridstackService.attachGridItem(this.generatedId, i));
@@ -107,16 +109,34 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, Gri
             $(this._el.nativeElement).on('removed', (evt: any, items: Item[]) => {
                 const itemsOfCurrentGrid = this._gridstackService.getGridItems(this.generatedId);
                 const existingItemIds: string[] = (<any>this._gridstack).grid.nodes.map(i => $(i.el)
-                .attr('class')
-                .split(/\s+/)
-                .find(s => s.startsWith('lb-generated-id-'))
-                .replace('lb-generated-id-', ''));
+                    .attr('class')
+                    .split(/\s+/)
+                    .find(s => s.startsWith('lb-generated-id-'))
+                    .replace('lb-generated-id-', ''));
 
                 const itemsToDelete = itemsOfCurrentGrid.filter(i => !existingItemIds.some(ei => ei == i.generatedId));
                 itemsToDelete.forEach(i => this._gridstackService.detachGridItemIfExists(i.generatedId));
                 this.removed.emit(items);
             });
         });
+    }
+
+    ngOnChanges(changes: SimpleChanges): void {
+        const heightChanges = changes['height'];
+        const optionsChanges = changes['options'];
+
+        if (heightChanges && !heightChanges.isFirstChange() && heightChanges.currentValue != heightChanges.previousValue) {
+            this._updateGridstackHeight(+heightChanges.currentValue);
+        }
+
+        if (optionsChanges && !optionsChanges.isFirstChange()) {
+            const prev: GridstackOptions = optionsChanges.previousValue;
+            const curr: GridstackOptions = optionsChanges.currentValue;
+
+            if(curr.cellHeight != prev.cellHeight) {
+                this._updateGridstackHeight(curr.cellHeight);
+            }
+        }
     }
 
     ngAfterViewInit(): void {
@@ -135,13 +155,21 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, Gri
         this._gridstackService.removeGrid(this);
     }
 
+    private _updateGridstackHeight(height: number) {
+        this._zone.runOutsideAngular(() => {
+            this._gridstack.cellHeight(height);
+        });
+    }
+
     private _handleItemChanges(items: GridstackItemComponent[]): void {
         const itemsOfCurrentGrid = this._gridstackService.getGridItems(this.generatedId);
         const itemsToAdd = items.filter(i => !itemsOfCurrentGrid.some(w => w.generatedId == i.generatedId));
         const itemsToRemove = itemsOfCurrentGrid.filter(w => !items.some(i => i.generatedId == w.generatedId));
 
+        this._gridstack.batchUpdate();
         itemsToAdd.forEach(i => this._addItem(i));
         itemsToRemove.forEach(i => this._removeItem(i));
+        this._gridstack.commit();
     }
 
     private _addItem(item: GridstackItemComponent): void {
