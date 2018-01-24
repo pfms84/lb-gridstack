@@ -155,9 +155,9 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
         this._gridstackService.removeGrid(this);
     }
 
-    private _updateGridstackHeight(height: number) {
+    private _updateGridstackHeight(height: number | string) {
         this._zone.runOutsideAngular(() => {
-            this._gridstack.cellHeight(height);
+            this._gridstack.cellHeight(<any>height);
         });
     }
 

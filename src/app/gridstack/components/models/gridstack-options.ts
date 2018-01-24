@@ -15,7 +15,7 @@ export interface GridstackOptions {
     /**
      *  one cell height (default: 60)
      */
-    cellHeight?: number;
+    cellHeight?: number | string;
     /**
      * class that implement drag'n'drop functionallity for gridstack. 
      * If false grid will be static. (default: null - first available plugin will be used)
