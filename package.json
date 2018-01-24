@@ -14,7 +14,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ./src/app/gridstack/package.json && cd tarball && npm pack ../lib && cd.."
+    "update-version-prerelease": "cd src/app/gridstack && npm version prerelease",
+    "packagr": "ng-packagr -p ./src/app/gridstack/package.json && cd tarball && npm pack ../lib && cd..",
+    "packagr-prerelease": "npm run update-version-prerelease && npm run packagr"
   },
   "private": false,
   "dependencies": {
@@ -39,7 +41,6 @@
     "@angular/cli": "1.6.1",
     "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
-    "@types/gridstack": "0.0.39",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/jquery": "^3.2.18",

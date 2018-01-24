@@ -50,7 +50,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
     public generatedId = (_sequence++).toString();
 
-    private _gridstack: GridStack;
+    private _gridstack: any;
 
     private _ngUnsubscribe = new Subject();
 
@@ -80,10 +80,9 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
                 this._renderer.addClass(this._el.nativeElement, `grid-stack-${width}`);
             }
 
-            // Cast due to the wrong IGridstackOptions definition. acceptWidgets should be a string
-            const el = $(this._el.nativeElement).gridstack(<any>this.options);
+            const el = (<any>$(this._el.nativeElement)).gridstack(this.options);
             $(el).data('generated-id', this.generatedId);
-            this._gridstack = <any>$(el).data('gridstack');
+            this._gridstack = $(el).data('gridstack');
 
             this._gridstackService.addGrid(this);
 
