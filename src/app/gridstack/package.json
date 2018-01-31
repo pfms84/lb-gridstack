@@ -1,7 +1,7 @@
 {
     "$schema": "../../../node_modules/ng-packagr/package.schema.json",
-    "name": "@lb/gridstack",
-    "version": "0.0.1-3",
+    "name": "@libria/gridstack",
+    "version": "0.0.1",
     "description": "Angular 5 wrapper for gridstack.js",
     "repository": {
         "type": "git",

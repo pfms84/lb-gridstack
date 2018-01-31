@@ -1,5 +1,5 @@
 {
-  "name": "@lb/gridstack",
+  "name": "@libria/gridstack",
   "version": "0.0.1",
   "description": "Angular 5 wrapper for gridstack.js",
   "repository": {
@@ -14,9 +14,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "update-version-patch": "cd src/app/gridstack && npm version patch",
     "update-version-prerelease": "cd src/app/gridstack && npm version prerelease",
     "packagr": "ng-packagr -p ./src/app/gridstack/package.json && cd tarball && npm pack ../lib && cd..",
-    "packagr-prerelease": "npm run update-version-prerelease && npm run packagr"
+    "packagr-prerelease": "npm run update-version-prerelease && npm run packagr",
+    "packagr-patch": "npm run update-version-patch && npm run packagr",
+    "publish": "npm publish lib --access=public"
   },
   "private": false,
   "dependencies": {
