@@ -6,6 +6,10 @@ Angular 5 wrapper for [Gridstack.js](http://gridstackjs.com/).
 
 ## Getting started
 
+```bash
+npm install @libria/gridstack --save
+```
+
 In order to try lb-gridstack while it is under development, you can install it directly from the tarballs.
 
 For example:
