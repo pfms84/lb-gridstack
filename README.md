@@ -10,7 +10,7 @@ In order to try lb-gridstack while it is under development, you can install it d
 
 For example:
 ```bash
-npm install https://github.com/pfms84/lb-gridstack/raw/develop/tarball/lb-gridstack-0.0.1.tgz --save
+npm install https://github.com/pfms84/lb-gridstack/raw/develop/tarball/libria-gridstack-0.0.1.tgz --save
 ```
 
 Then import the library on your root module (AppModule, for instance):
@@ -20,7 +20,7 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { GridstackModule } from '@lb/gridstack';
+import { GridstackModule } from '@libria/gridstack';
 
 @NgModule({
   declarations: [
