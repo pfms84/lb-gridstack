@@ -43,7 +43,6 @@ export class AppComponent {
 
     widgetConfigsLoaded = false;
     widgetConfigs: WidgetConfig[] = _widgetDefaultConfigs;
-    height = 240;
 
     get widget1() {
         return this.widgetConfigs.find(wc => wc.id == 'widget1');
@@ -84,13 +83,6 @@ export class AppComponent {
 
                 this.widgetConfigsLoaded = true;
             });
-
-        let incrementHeight = true;
-
-        setInterval(() => {
-            this.height = incrementHeight ? this.height + 40 : this.height - 40;
-            incrementHeight = !incrementHeight;
-        }, 5000);
     }
 
     onWidgetGridChange($event: Item[]) {

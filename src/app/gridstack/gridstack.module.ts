@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { GridstackComponent } from './components/gridstack.component';
 import { GridstackItemComponent } from './components/gridstack-item.component';
 import { GridstackService } from './services/gridstack.service';
-import './rxjs-operators';
 
 @NgModule({
     imports: [

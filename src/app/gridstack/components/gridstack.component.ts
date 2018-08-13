@@ -29,7 +29,8 @@ import { Item } from './models/item';
 import { GridstackService } from '../services/gridstack.service';
 import { Grid } from './models/grid';
 import { GridItem } from './models/grid-item';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
     selector: 'div[lb-gridstack]',
@@ -132,7 +133,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
             const prev: GridstackOptions = optionsChanges.previousValue;
             const curr: GridstackOptions = optionsChanges.currentValue;
 
-            if(curr.cellHeight != prev.cellHeight) {
+            if (curr.cellHeight != prev.cellHeight) {
                 this._updateGridstackHeight(curr.cellHeight);
             }
         }
@@ -140,7 +141,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
     ngAfterViewInit(): void {
         this.gridstackItems.changes
-            .takeUntil(this._ngUnsubscribe)
+            .pipe(takeUntil(this._ngUnsubscribe))
             .subscribe(changes => {
                 this._handleItemChanges(this.gridstackItems.toArray());
             });
