@@ -1,6 +1,6 @@
 # lb-gridstack
 
-Angular 5 wrapper for [Gridstack.js](http://gridstackjs.com/).
+Angular 6 wrapper for [Gridstack.js](http://gridstackjs.com/).
 
 ***THIS IS A WORK IN PROGRESS! USE IT AT YOUR OWN RISK!***
 

@@ -25,10 +25,10 @@ export declare class GridstackComponent implements OnInit, OnDestroy, AfterViewI
     ngOnChanges(changes: SimpleChanges): void;
     ngAfterViewInit(): void;
     ngOnDestroy(): void;
-    private _updateGridstackHeight(height);
-    private _handleItemChanges(items);
-    private _addItem(item);
-    private _removeItem(item);
-    private _setAttributeIfNotUndefined(attrName, val);
-    private _isValueTrue(val);
+    private _updateGridstackHeight;
+    private _handleItemChanges;
+    private _addItem;
+    private _removeItem;
+    private _setAttributeIfNotUndefined;
+    private _isValueTrue;
 }

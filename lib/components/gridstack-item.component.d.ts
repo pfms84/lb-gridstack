@@ -19,6 +19,6 @@ export declare class GridstackItemComponent implements AfterViewInit, GridItem {
     generatedId: string;
     constructor(elem: ElementRef, _renderer: Renderer2);
     ngAfterViewInit(): void;
-    private _setAttributeIfNotUndefined(attrName, val);
-    private _setAttributeIfTrue(attrName, val);
+    private _setAttributeIfNotUndefined;
+    private _setAttributeIfTrue;
 }
