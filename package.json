@@ -17,7 +17,7 @@
     "copy-readme": "copy README.md lib",
     "update-version-patch": "cd src/app/gridstack && npm version patch",
     "update-version-prerelease": "cd src/app/gridstack && npm version prerelease",
-    "packagr": "ng-packagr -p ./src/app/gridstack/package.json && npm run copy-readme && cd tarball && npm pack ../lib && cd..",
+    "packagr": "ng-packagr -p ./src/app/gridstack/package.json",
     "packagr-prerelease": "npm run update-version-prerelease && npm run packagr",
     "packagr-patch": "npm run update-version-patch && npm run packagr",
     "publish": "npm publish lib --access=public"

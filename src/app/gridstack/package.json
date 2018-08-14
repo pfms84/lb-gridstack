@@ -23,6 +23,6 @@
                 "rxjs": "Rx"
             }
         },
-        "dest": "lib"
+        "dest": "../../../lib"
     }
 }
