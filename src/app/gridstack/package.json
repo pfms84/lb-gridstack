@@ -13,12 +13,15 @@
         "gridstack": "^0.3.0",
         "jquery": "^2.2.0",
         "jquery-ui-dist": "^1.12.1",
-        "lodash": "^4.17.4"
+        "lodash": "^4.17.4",
+        "rxjs": "^6.2.2"
     },
     "ngPackage": {
         "lib": {
             "entryFile": "public_api.ts",
-            "externals": {}
+            "externals": {
+                "rxjs": "Rx"
+            }
         },
         "dest": "lib"
     }
