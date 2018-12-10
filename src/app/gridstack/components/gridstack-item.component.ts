@@ -23,7 +23,7 @@ let _sequence = 0;
     styleUrls: ['./gridstack-item.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
-export class GridstackItemComponent implements AfterViewInit, GridItem { 
+export class GridstackItemComponent implements AfterViewInit, GridItem {
     @Input() x: number | string;
     @Input() y: number | string;
     @Input() width: number | string;
@@ -54,7 +54,7 @@ export class GridstackItemComponent implements AfterViewInit, GridItem {
         this._setAttributeIfNotUndefined('data-gs-max-height', this.maxHeight);
         this._setAttributeIfNotUndefined('data-gs-min-width', this.minWidth);
         this._setAttributeIfNotUndefined('data-gs-min-height', this.minHeight);
-        
+
         this._setAttributeIfTrue('data-gs-no-resize', this.noResize);
         this._setAttributeIfTrue('data-gs-no-move', this.noMove);
         this._setAttributeIfTrue('data-gs-auto-position', this.autoPosition);
