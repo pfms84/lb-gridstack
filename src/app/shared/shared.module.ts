@@ -1,11 +1,11 @@
-import { GridstackModule } from '../gridstack/gridstack.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { GridstackModule } from '@libria/gridstack';
 
 @NgModule({
     imports: [
         CommonModule,
-        GridstackModule.forRoot()
+        GridstackModule
     ],
     exports: [
         GridstackModule
