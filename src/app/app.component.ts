@@ -1,9 +1,8 @@
-import { Item } from './gridstack/components/models/item';
 import { NumberSymbol } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { WidgetsService } from './widgets/services/widgets.service';
 import { WidgetConfig } from './widgets/models/widget-config';
-import { GridstackComponent } from './gridstack/components/gridstack.component';
+import { Item } from '@libria/gridstack';
 
 const _widgetDefaultConfigs: WidgetConfig[] = [{
     id: 'widget1',
@@ -39,8 +38,6 @@ let dynamicWidgetId = 0;
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    @ViewChild(GridstackComponent) gridstackComponent: GridstackComponent;
-
     widgetConfigsLoaded = false;
     widgetConfigs: WidgetConfig[] = _widgetDefaultConfigs;
 
