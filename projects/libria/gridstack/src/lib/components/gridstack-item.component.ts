@@ -1,14 +1,8 @@
-import { Item } from './models/item';
 import {
     AfterViewInit,
     Component,
     ElementRef,
-    EventEmitter,
-    Host,
     Input,
-    NgZone,
-    OnInit,
-    Output,
     Renderer2,
     ViewEncapsulation,
 } from '@angular/core';
@@ -18,32 +12,33 @@ declare var _: any;
 let _sequence = 0;
 
 @Component({
+    // tslint:disable-next-line:component-selector
     selector: 'div[lb-gridstack-item]',
     templateUrl: './gridstack-item.component.html',
     styleUrls: ['./gridstack-item.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class GridstackItemComponent implements AfterViewInit, GridItem {
-    @Input() x: number | string;
-    @Input() y: number | string;
-    @Input() width: number | string;
-    @Input() height: number | string;
-    @Input() id: string;
-    @Input('max-width') maxWidth: number | string;
-    @Input('max-height') maxHeight: number | string;
-    @Input('min-width') minWidth: number | string;
-    @Input('min-height') minHeight: number | string;
-    @Input('no-resize') noResize: boolean | string;
-    @Input('no-move') noMove: boolean | string;
-    @Input('auto-position') autoPosition: boolean | string;
-    @Input() locked: boolean | string;
+    @Input() public x: number | string;
+    @Input() public y: number | string;
+    @Input() public width: number | string;
+    @Input() public height: number | string;
+    @Input() public id: string;
+    @Input('max-width') public maxWidth: number | string;
+    @Input('max-height') public maxHeight: number | string;
+    @Input('min-width') public minWidth: number | string;
+    @Input('min-height') public minHeight: number | string;
+    @Input('no-resize') public noResize: boolean | string;
+    @Input('no-move') public noMove: boolean | string;
+    @Input('auto-position') public autoPosition: boolean | string;
+    @Input() public locked: boolean | string;
     public generatedId: string = (_sequence++).toString();
 
     constructor(public elem: ElementRef,
-        private _renderer: Renderer2
+                private _renderer: Renderer2
     ) { }
 
-    ngAfterViewInit() {
+    public ngAfterViewInit() {
         this._renderer.addClass(this.elem.nativeElement, 'grid-stack-item');
         this._setAttributeIfNotUndefined('data-gs-x', this.x);
         this._setAttributeIfNotUndefined('data-gs-y', this.y);

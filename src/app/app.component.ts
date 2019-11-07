@@ -1,5 +1,5 @@
 import { NumberSymbol } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { WidgetsService } from './widgets/services/widgets.service';
 import { WidgetConfig } from './widgets/models/widget-config';
 import { Item } from '@libria/gridstack';
@@ -37,9 +37,9 @@ let dynamicWidgetId = 0;
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-    widgetConfigsLoaded = false;
-    widgetConfigs: WidgetConfig[] = _widgetDefaultConfigs;
+export class AppComponent implements OnInit {
+    public widgetConfigsLoaded = false;
+    public widgetConfigs: WidgetConfig[] = _widgetDefaultConfigs;
 
     get widget1() {
         return this.widgetConfigs.find(wc => wc.id == 'widget1');
@@ -57,7 +57,7 @@ export class AppComponent {
         return this.widgetConfigs.find(wc => wc.id == 'widget4');
     }
 
-    widgets: {
+    public widgets: {
         x?: number,
         y?: number,
         width?: number,
@@ -68,7 +68,7 @@ export class AppComponent {
     constructor(private _widgetsService: WidgetsService) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         this._widgetsService.loadConfigurations();
 
         this._widgetsService.widgetConfigurations$
@@ -82,7 +82,7 @@ export class AppComponent {
             });
     }
 
-    onWidgetGridChange($event: Item[]) {
+    public onWidgetGridChange($event: Item[]) {
         const newConfigs = this.widgetConfigs.map(wc => {
             const item = $event.find(i => i.id == wc.id);
             if (!item) {
@@ -101,7 +101,7 @@ export class AppComponent {
         this._widgetsService.saveConfigurations(newConfigs);
     }
 
-    addWidget() {
+    public addWidget() {
         this.widgets.push({
             width: 2,
             height: 2,
@@ -109,11 +109,11 @@ export class AppComponent {
         });
     }
 
-    removeWidget() {
+    public removeWidget() {
         this.widgets.splice(0, 1);
     }
 
-    onChange(evt: Item, widget: {
+    public onChange(evt: Item, widget: {
         x?: number,
         y?: number,
         width?: number,

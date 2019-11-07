@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { WidgetConfig } from '../models/widget-config';
 
@@ -11,10 +11,10 @@ export class WidgetsService {
     }
 
     public loadConfigurations(): void {
-        let widgetConfigsString = localStorage.getItem('widgetConfigs');
+        const widgetConfigsString = localStorage.getItem('widgetConfigs');
 
         if (!!widgetConfigsString) {
-            const configs = <WidgetConfig[]>JSON.parse(widgetConfigsString);
+            const configs = JSON.parse(widgetConfigsString) as WidgetConfig[];
             setTimeout(() => this._widgetConfigurations.next(configs), 3000);
         } else {
             setTimeout(() => this._widgetConfigurations.next([]), 3000);

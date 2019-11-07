@@ -9,7 +9,7 @@ export class Widget3Component implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit() {
   }
 
 }

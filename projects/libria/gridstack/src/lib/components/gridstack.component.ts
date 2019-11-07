@@ -1,9 +1,6 @@
 import { GridstackOptions } from './models/gridstack-options';
 import {
-    AfterContentInit,
     AfterViewInit,
-    ChangeDetectionStrategy,
-    ChangeDetectorRef,
     Component,
     ContentChildren,
     ElementRef,
@@ -14,7 +11,6 @@ import {
     QueryList,
     Renderer2,
     ViewEncapsulation,
-    ViewContainerRef,
     OnInit,
     OnDestroy,
     OnChanges,
@@ -33,25 +29,26 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
+    // tslint:disable-next-line:component-selector
     selector: 'div[lb-gridstack]',
     templateUrl: './gridstack.component.html',
     styleUrls: ['./gridstack.component.scss'],
     encapsulation: ViewEncapsulation.None
 })
 export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges, Grid {
-    @ContentChildren(GridstackItemComponent) gridstackItems: QueryList<GridstackItemComponent>;
-    @Input() options: GridstackOptions;
-    @Input() animate: boolean | string;
-    @Input() width: number | string;
-    @Input() height: number | string;
+    @ContentChildren(GridstackItemComponent) public gridstackItems: QueryList<GridstackItemComponent>;
+    @Input() public options: GridstackOptions;
+    @Input() public animate: boolean | string;
+    @Input() public width: number | string;
+    @Input() public height: number | string;
 
-    @Output() change = new EventEmitter<Item[]>();
-    @Output() added = new EventEmitter<Item[]>();
-    @Output() removed = new EventEmitter<Item[]>();
-    @Output() dragstart = new EventEmitter();
-    @Output() dragstop = new EventEmitter();
-    @Output() resizestart = new EventEmitter();
-    @Output() gsresizestop = new EventEmitter();
+    @Output() public change = new EventEmitter<Item[]>();
+    @Output() public added = new EventEmitter<Item[]>();
+    @Output() public removed = new EventEmitter<Item[]>();
+    @Output() public dragstart = new EventEmitter();
+    @Output() public dragstop = new EventEmitter();
+    @Output() public resizestart = new EventEmitter();
+    @Output() public gsresizestop = new EventEmitter();
 
     public generatedId = (_sequence++).toString();
 
@@ -60,11 +57,11 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
     private _ngUnsubscribe = new Subject();
 
     constructor(private _zone: NgZone,
-        private _el: ElementRef,
-        private _renderer: Renderer2,
-        private _gridstackService: GridstackService) { }
+                private _el: ElementRef,
+                private _renderer: Renderer2,
+                private _gridstackService: GridstackService) { }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         if (this.options && this.options.acceptWidgets != null) {
             console.error('acceptWidgets option not supported yet!');
         }
@@ -85,7 +82,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
                 this._renderer.addClass(this._el.nativeElement, `grid-stack-${width}`);
             }
 
-            const el = (<any>$(this._el.nativeElement)).gridstack(this.options);
+            const el = ($(this._el.nativeElement) as any).gridstack(this.options);
             $(el).data('generated-id', this.generatedId);
             this._gridstack = $(el).data('gridstack');
 
@@ -94,7 +91,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
             // Hook events
             $(this._el.nativeElement).on('added', (evt: any, items: Item[]) => {
                 const itemsOfCurrentGrid = this._gridstackService.getGridItems(this.generatedId);
-                const existingItemIds: string[] = (<any>this._gridstack).grid.nodes.map(i => $(i.el)
+                const existingItemIds: string[] = (this._gridstack as any).grid.nodes.map(i => $(i.el)
                     .attr('class')
                     .split(/\s+/)
                     .find(s => s.startsWith('lb-generated-id-'))
@@ -128,7 +125,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
             $(this._el.nativeElement).on('removed', (evt: any, items: Item[]) => {
                 const itemsOfCurrentGrid = this._gridstackService.getGridItems(this.generatedId);
-                const existingItemIds: string[] = (<any>this._gridstack).grid.nodes.map(i => $(i.el)
+                const existingItemIds: string[] = (this._gridstack as any).grid.nodes.map(i => $(i.el)
                     .attr('class')
                     .split(/\s+/)
                     .find(s => s.startsWith('lb-generated-id-'))
@@ -141,9 +138,9 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
         });
     }
 
-    ngOnChanges(changes: SimpleChanges): void {
-        const heightChanges = changes['height'];
-        const optionsChanges = changes['options'];
+    public ngOnChanges(changes: SimpleChanges): void {
+        const heightChanges = changes.height;
+        const optionsChanges = changes.options;
 
         if (heightChanges && !heightChanges.isFirstChange() && heightChanges.currentValue !== heightChanges.previousValue) {
             this._updateGridstackHeight(+heightChanges.currentValue);
@@ -159,7 +156,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
         }
     }
 
-    ngAfterViewInit(): void {
+    public ngAfterViewInit(): void {
         this.gridstackItems.changes
             .pipe(takeUntil(this._ngUnsubscribe))
             .subscribe(changes => {
@@ -169,7 +166,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
         this._handleItemChanges(this.gridstackItems.toArray());
     }
 
-    ngOnDestroy(): void {
+    public ngOnDestroy(): void {
         this._ngUnsubscribe.next();
         this._gridstack.destroy();
         this._gridstackService.removeGrid(this);
@@ -177,7 +174,7 @@ export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnC
 
     private _updateGridstackHeight(height: number | string) {
         this._zone.runOutsideAngular(() => {
-            this._gridstack.cellHeight(<any>height);
+            this._gridstack.cellHeight(height as any);
         });
     }
 

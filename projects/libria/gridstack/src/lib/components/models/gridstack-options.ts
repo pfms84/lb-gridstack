@@ -17,7 +17,7 @@ export interface GridstackOptions {
      */
     cellHeight?: number | string;
     /**
-     * class that implement drag'n'drop functionallity for gridstack. 
+     * class that implement drag'n'drop functionallity for gridstack.
      * If false grid will be static. (default: null - first available plugin will be used)
      */
     ddPlugin?: any;
@@ -78,7 +78,7 @@ export interface GridstackOptions {
     */
     resizable?: {};
     /**
-     * if true widgets could be removed by dragging outside of the grid. It could also be a jQuery selector string, 
+     * if true widgets could be removed by dragging outside of the grid. It could also be a jQuery selector string,
      */
     removable?: boolean | string;
     /**
@@ -90,7 +90,8 @@ export interface GridstackOptions {
      */
     rtl?: boolean | 'auto';
     /**
-    * makes grid static (default false).If true widgets are not movable/ resizable.You don't even need jQueryUI draggable/resizable. A CSS class grid-stack-static is also added to the container.
+    * makes grid static (default false).If true widgets are not movable/ resizable.You don't even need jQueryUI draggable/resizable.
+    * A CSS class grid-stack-static is also added to the container.
     */
     staticGrid?: boolean;
     /**

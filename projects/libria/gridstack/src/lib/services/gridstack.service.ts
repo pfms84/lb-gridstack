@@ -9,24 +9,24 @@ export class GridstackService {
         item: GridItem;
     }[] = [];
 
-    private _grids:Grid[] = [];
+    private _grids: Grid[] = [];
 
     constructor() { }
 
-    addGrid(grid: Grid) {
+    public addGrid(grid: Grid) {
         this._grids.push(grid);
     }
 
-    removeGrid(grid: Grid) {
+    public removeGrid(grid: Grid) {
         this._grids.splice(this._grids.findIndex(g => g.generatedId == grid.generatedId), 1);
         this._gridItems = this._gridItems.filter(gi => gi.gridId != grid.generatedId);
     }
 
-    attachGridItem(gridId: string, gridItemId: string) {
+    public attachGridItem(gridId: string, gridItemId: string) {
         this._gridItems.find(gi => gi.item.generatedId == gridItemId).gridId = gridId;
     }
 
-    detachGridItemIfExists(gridItemId: string) {
+    public detachGridItemIfExists(gridItemId: string) {
         const gridItem = this._gridItems.find(gi => gi.item.generatedId == gridItemId);
 
         if (!!gridItem) {
@@ -34,22 +34,22 @@ export class GridstackService {
         }
     }
 
-    getGridItems(gridId: string) {
+    public getGridItems(gridId: string) {
         return this._gridItems.filter(gi => gi.gridId == gridId).map(g => g.item);
     }
 
-    getOrphanGridItems() {
+    public getOrphanGridItems() {
         return this._gridItems.filter(gi => gi.gridId == null).map(g => g.item);
     }
 
-    addOrphanGridItem(gridItem: GridItem) {
+    public addOrphanGridItem(gridItem: GridItem) {
         this._gridItems.push({
             gridId: null,
             item: gridItem
         });
     }
 
-    removeGridItem(gridItemId: string) {
+    public removeGridItem(gridItemId: string) {
         this._gridItems.splice(this._gridItems.findIndex(gi => gi.item.generatedId == gridItemId), 1);
     }
 }
