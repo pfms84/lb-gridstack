@@ -9,12 +9,12 @@
   "license": "MIT",
   "private": false,
   "peerDependencies": {
-    "@angular/common": "^8.0.0",
-    "@angular/core": "^8.0.0",
+    "@angular/common": "^9.0.0",
+    "@angular/core": "^9.0.0",
     "gridstack": "~0.3.0",
     "jquery": "~2.2.0",
     "jquery-ui-dist": "~1.12.1",
     "lodash": "~4.17.4",
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.5.4"
   }
 }

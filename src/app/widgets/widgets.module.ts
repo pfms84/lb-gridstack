@@ -16,7 +16,7 @@ import { Widget4Component } from './widget4/widget4.component';
     exports: [Widget1Component, Widget2Component, Widget3Component, Widget4Component]
 })
 export class WidgetsModule {
-    public static forRoot(): ModuleWithProviders {
+    public static forRoot(): ModuleWithProviders<WidgetsModule> {
         return {
             ngModule: WidgetsModule,
             providers: [WidgetsService]

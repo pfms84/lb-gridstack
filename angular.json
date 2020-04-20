@@ -22,7 +22,7 @@
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
-                        "aot": false,
+                        "aot": true,
                         "assets": [
                             "src/favicon.ico",
                             "src/assets"
@@ -52,7 +52,6 @@
                             "sourceMap": false,
                             "extractCss": true,
                             "namedChunks": false,
-                            "aot": true,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
@@ -74,18 +73,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "lbgridstack:build"
+                        "browserTarget": "lb-gridstack:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "lbgridstack:build:production"
+                            "browserTarget": "lb-gridstack:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "lbgridstack:build"
+                        "browserTarget": "lb-gridstack:build"
                     }
                 },
                 "test": {
@@ -122,11 +121,11 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "lbgridstack:serve"
+                        "devServerTarget": "lb-gridstack:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "lbgridstack:serve:production"
+                            "devServerTarget": "lb-gridstack:serve:production"
                         }
                     }
                 }
@@ -143,6 +142,11 @@
                     "options": {
                         "tsConfig": "projects/libria/gridstack/tsconfig.lib.json",
                         "project": "projects/libria/gridstack/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "projects/libria/gridstack/tsconfig.lib.prod.json"
+                        }
                     }
                 },
                 "test": {

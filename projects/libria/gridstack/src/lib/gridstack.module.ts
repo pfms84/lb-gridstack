@@ -16,7 +16,7 @@ import { GridstackService } from './services/gridstack.service';
         GridstackItemComponent]
 })
 export class GridstackModule {
-    public static forRoot(): ModuleWithProviders {
+    public static forRoot(): ModuleWithProviders<GridstackModule> {
         return {
             ngModule: GridstackModule,
             providers: [
