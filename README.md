@@ -1,6 +1,6 @@
 # lb-gridstack
 
-Angular 8 wrapper for [Gridstack.js](http://gridstackjs.com/).
+Angular 9 wrapper for [Gridstack.js](http://gridstackjs.com/).
 
 ## Getting started
 
