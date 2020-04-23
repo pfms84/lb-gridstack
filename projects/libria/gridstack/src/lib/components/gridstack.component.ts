@@ -36,7 +36,9 @@ import { takeUntil } from 'rxjs/operators';
     encapsulation: ViewEncapsulation.None
 })
 export class GridstackComponent implements OnInit, OnDestroy, AfterViewInit, OnChanges, Grid {
-    @ContentChildren(GridstackItemComponent) public gridstackItems: QueryList<GridstackItemComponent>;
+    @ContentChildren(GridstackItemComponent, {
+        descendants: true
+    }) public gridstackItems: QueryList<GridstackItemComponent>;
     @Input() public options: GridstackOptions;
     @Input() public animate: boolean | string;
     @Input() public width: number | string;
